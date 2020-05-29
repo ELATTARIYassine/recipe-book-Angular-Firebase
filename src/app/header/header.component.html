@@ -15,10 +15,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="isAuthenticated">
                         <a style="cursor: pointer;" [routerLink]="['/recipes']">Recipes</a>
                     </li>
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="!isAuthenticated">
                         <a style="cursor: pointer;" [routerLink]="['/auth']">Authenticate</a>
                     </li>
                     <li routerLinkActive="active">
@@ -26,7 +26,10 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown" appDropdown>
+                    <li *ngIf="isAuthenticated">
+                        <a style="cursor: pointer;">Logout</a>
+                    </li>
+                    <li class="dropdown" appDropdown *ngIf="isAuthenticated">
                         <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a style="cursor: pointer;" (click)="onSaveData()">Save data</a></li>
